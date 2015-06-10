@@ -17,7 +17,7 @@ public class Database {
     
     public Database() {
         this.driver = "com.mysql.jdbc.Driver";
-        this.url = "jdbc:mysql://localhost:3306/EMP0391";
+        this.url = "jdbc:mysql://localhost:3306/siman";
         this.user="root";
         this.password="";
     }
