@@ -15,7 +15,7 @@ public class DAOProductos {
     Database db = new Database();
     Productos pro = new Productos();
     
-    public ArrayList<Object[]> mostar(){
+    public ArrayList<Object[]> mostrar(){
         
         ArrayList<Object[]> datos = new ArrayList<>();
         Connection con;

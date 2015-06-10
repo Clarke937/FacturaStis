@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vistas;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -13,12 +8,27 @@ import uml.*;
  * @author Edgar
  */
 public class FormProductos extends javax.swing.JFrame {
-
-    /**
-     * Creates new form FormProductos
-     */
+    
+    String [] columnas = {"Codigo","Producto","Marca","Costo","Precio Venta"};
+    DefaultTableModel modelo = new DefaultTableModel(columnas,0);
+    
+    DAOProductos dao = new DAOProductos();
+    Productos emp = new Productos();
+    
+    ArrayList<Object[]> datos = new ArrayList<>();
+    
+    private void CargarTabla(){
+        datos = dao.mostrar();
+        modelo.setRowCount(0);
+        for (Object[] fila : datos) {
+            modelo.addRow(fila);
+        }
+        tbProdcutos.setModel(modelo);
+    }
+    
     public FormProductos() {
         initComponents();
+        CargarTabla();
     }
 
     /**
@@ -31,13 +41,13 @@ public class FormProductos extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbProdcutos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbProdcutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -48,12 +58,17 @@ public class FormProductos extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbProdcutos);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Lista de Productos Ingresados");
 
         jButton1.setText("Salir");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,6 +104,10 @@ public class FormProductos extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -129,6 +148,6 @@ public class FormProductos extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbProdcutos;
     // End of variables declaration//GEN-END:variables
 }
