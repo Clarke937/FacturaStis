@@ -14,4 +14,13 @@ public class Database {
     private String password;
     private String driver;
     private String url;
+    
+    public Database() {
+        this.driver = "com.mysql.jdbc.Driver";
+        this.url = "jdbc:mysql://localhost:3306/EMP0391";
+        this.user="root";
+        this.password="";
+    }
+    
 }
+
